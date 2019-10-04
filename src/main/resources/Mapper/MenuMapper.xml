@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anonymous.developer.www.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.anonymous.developer.www.model.Menu">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_type" jdbcType="TINYINT" property="menuType" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_parent_id" jdbcType="INTEGER" property="menuParentId" />
+    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+    <result column="operate_datetime" jdbcType="TIMESTAMP" property="operateDatetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Menu">
+    insert into menu (menu_id, menu_name, menu_icon, 
+      menu_type, menu_url, menu_parent_id, 
+      create_datetime, operator, operator_ip, 
+      operate_datetime)
+    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR}, 
+      #{menuType,jdbcType=TINYINT}, #{menuUrl,jdbcType=VARCHAR}, #{menuParentId,jdbcType=INTEGER}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, 
+      #{operateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.anonymous.developer.www.model.Menu">
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      menu_type = #{menuType,jdbcType=TINYINT},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_parent_id = #{menuParentId,jdbcType=INTEGER},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operate_datetime = #{operateDatetime,jdbcType=TIMESTAMP}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select menu_id, menu_name, menu_icon, menu_type, menu_url, menu_parent_id, create_datetime, 
+    operator, operator_ip, operate_datetime
+    from menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select menu_id, menu_name, menu_icon, menu_type, menu_url, menu_parent_id, create_datetime, 
+    operator, operator_ip, operate_datetime
+    from menu
+  </select>
+</mapper>

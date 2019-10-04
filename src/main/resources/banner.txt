@@ -1,0 +1,15 @@
+--------------- Developer Information ---------------
+
+Developer:萧宇
+
+WeChat:Anonymous-Developer
+
+QQ:794763733
+
+Copyright:Anonymous-Developer
+
+SpringBoot Version:${spring-boot.version}
+
+Application Version:${application.version}
+
+--------------- Developer Information ---------------

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anonymous.developer.www.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.anonymous.developer.www.model.Role">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_description" jdbcType="VARCHAR" property="roleDescription" />
+    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+    <result column="operate_datetime" jdbcType="TIMESTAMP" property="operateDatetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Role">
+    insert into role (role_id, role_name, role_description, 
+      create_datetime, operator, operator_ip, 
+      operate_datetime)
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleDescription,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, 
+      #{operateDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.anonymous.developer.www.model.Role">
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_description = #{roleDescription,jdbcType=VARCHAR},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operate_datetime = #{operateDatetime,jdbcType=TIMESTAMP}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select role_id, role_name, role_description, create_datetime, operator, operator_ip, 
+    operate_datetime
+    from role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <select id="selectPermissionNameByAccountPrimaryKey" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select permission_name
+    from permission
+    inner join relation_role_permission
+    on permission.permission_id = relation_role_permission.permission_id
+    inner join relation_account_role
+    on relation_role_permission.role_id = relation_account_role.role_id
+    where relation_account_role.account_id = #{accountId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select role_id, role_name, role_description, create_datetime, operator, operator_ip, 
+    operate_datetime
+    from role
+  </select>
+</mapper>

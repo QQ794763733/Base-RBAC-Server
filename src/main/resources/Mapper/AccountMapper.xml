@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anonymous.developer.www.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.anonymous.developer.www.model.Account">
+    <id column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="account_password" jdbcType="CHAR" property="accountPassword" />
+    <result column="account_description" jdbcType="VARCHAR" property="accountDescription" />
+    <result column="account_sex" jdbcType="TINYINT" property="accountSex" />
+    <result column="create_datetime" jdbcType="TIMESTAMP" property="createDatetime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="operator_ip" jdbcType="VARCHAR" property="operatorIp" />
+    <result column="operate_datetime" jdbcType="TIMESTAMP" property="operateDatetime" />
+    <result column="last_login_datetime" jdbcType="TIMESTAMP" property="lastLoginDatetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Account">
+    insert into account (account_id, account_name, account_password, 
+      account_description, account_sex, create_datetime, 
+      operator, operator_ip, operate_datetime, 
+      last_login_datetime)
+    values (#{accountId,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}, #{accountPassword,jdbcType=CHAR}, 
+      #{accountDescription,jdbcType=VARCHAR}, #{accountSex,jdbcType=TINYINT}, #{createDatetime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR}, #{operateDatetime,jdbcType=TIMESTAMP}, 
+      #{lastLoginDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.anonymous.developer.www.model.Account">
+    update account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_password = #{accountPassword,jdbcType=CHAR},
+      account_description = #{accountDescription,jdbcType=VARCHAR},
+      account_sex = #{accountSex,jdbcType=TINYINT},
+      create_datetime = #{createDatetime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      operator_ip = #{operatorIp,jdbcType=VARCHAR},
+      operate_datetime = #{operateDatetime,jdbcType=TIMESTAMP},
+      last_login_datetime = #{lastLoginDatetime,jdbcType=TIMESTAMP}
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select account_id, account_name, account_password, account_description, account_sex, 
+    create_datetime, operator, operator_ip, operate_datetime, last_login_datetime
+    from account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByAccountName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select account_id, account_name, account_password, account_description, account_sex,
+    create_datetime, operator, operator_ip, operate_datetime, last_login_datetime
+    from account
+    where account_name = #{accountName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectLimit" resultMap="BaseResultMap">
+    select account_id, account_name, account_description, account_sex,
+    create_datetime, operator, operator_ip, operate_datetime, last_login_datetime
+    from account
+    where account_name like CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+    OR account_description like CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+    limit #{startRow,jdbcType=INTEGER},#{endRow,jdbcType=INTEGER}
+  </select>
+  <select id="selectCountAll" resultType="java.lang.Integer">
+    select count(*) from account
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select account_id, account_name, account_password, account_description, account_sex, 
+    create_datetime, operator, operator_ip, operate_datetime, last_login_datetime
+    from account
+  </select>
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 配置类型处理器 -->
+    <typeHandlers>
+        <typeHandler handler="com.anonymous.developer.www.enumhandler.EnumAccountSexHandler" javaType="com.anonymous.developer.www.enums.EnumAccountSex" jdbcType="TINYINT"/>
+        <typeHandler handler="com.anonymous.developer.www.enumhandler.EnumMenuTypeHandler" javaType="com.anonymous.developer.www.enums.EnumMenuType" jdbcType="TINYINT"/>
+    </typeHandlers>
+</configuration>
