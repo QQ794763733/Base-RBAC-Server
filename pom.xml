@@ -110,6 +110,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <!-- 是否开启热交换 -->
             <optional>true</optional>
         </dependency>
     </dependencies>
@@ -122,6 +123,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <!-- 指示运行的进程是否应该分叉。如果指定了代理、jvmArguments或工作目录，或者存在devtools，则自动启用fork。 -->
+                    <fork>true</fork>
+                    <!-- 主类 -->
                     <mainClass>com.anonymous.developer.www.Application</mainClass>
                 </configuration>
             </plugin>

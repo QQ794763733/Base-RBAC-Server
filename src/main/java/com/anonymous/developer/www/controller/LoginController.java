@@ -1,6 +1,8 @@
 package com.anonymous.developer.www.controller;
 
 import com.anonymous.developer.www.common.CommonResult;
+import com.anonymous.developer.www.dto.LoginInformation;
+import com.anonymous.developer.www.model.Account;
 import com.anonymous.developer.www.parameter.LoginRequestParam;
 import com.anonymous.developer.www.service.AccountService;
 import io.swagger.annotations.Api;
@@ -37,8 +39,7 @@ public class LoginController extends BaseController{
     public CommonResult login(@RequestBody @Valid LoginRequestParam loginRequestParam){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(loginRequestParam.getAccountName(), loginRequestParam.getAccountPassword());
-        if(loginRequestParam.getRememberMe())
-            token.setRememberMe(true);
+        token.setRememberMe(loginRequestParam.getRememberMe());
         try {
             subject.login(token);
         }catch (Exception exception){
@@ -46,9 +47,12 @@ public class LoginController extends BaseController{
         }
         //如果登录验证成功
         if(subject.isAuthenticated()) {
+            //再次取出Account
+            Account account = accountService.findByAccountName(loginRequestParam.getAccountName());
             Session session = subject.getSession();
             //将用户名存入Session
-            session.setAttribute("AccountName", loginRequestParam.getAccountName());
+            session.setAttribute("AccountId",account.getAccountId());
+            session.setAttribute("AccountName", account.getAccountName());
             //更新登录时间
             accountService.updateLoginDatetimeByAccountName(loginRequestParam.getAccountName());
             return CommonResult.success(true);
@@ -61,11 +65,7 @@ public class LoginController extends BaseController{
     @GetMapping(value = "/logout")
     public CommonResult logout(){
         Subject subject = SecurityUtils.getSubject();
-        if(subject.getSession().getAttribute("AccountName")!=null){
-            if(subject.isAuthenticated()){
-                subject.logout();
-            }
-        }
+        subject.logout();
         return CommonResult.success(true);
     }
 
@@ -95,9 +95,15 @@ public class LoginController extends BaseController{
     @GetMapping(value = "/isAuthentication")
     public CommonResult isAuthentication(){
         Subject subject = SecurityUtils.getSubject();
-        if(subject.isAuthenticated() && subject.getSession().getAttribute("AccountName")!=null){
-            return CommonResult.createCommonResult("当前账户已登录");
+        Session session = subject.getSession();
+        LoginInformation loginInformation = new LoginInformation();
+        if(subject.isAuthenticated() && session.getAttribute("AccountId")!=null && session.getAttribute("AccountName")!=null){
+            loginInformation.setLogin(true);
+            loginInformation.setAccountId(Integer.parseInt(session.getAttribute("AccountId").toString()));
+            loginInformation.setAccountName(session.getAttribute("AccountName").toString());
+            return CommonResult.success(loginInformation);
         }
-        return CommonResult.createCommonResult("当前账户未登录");
+        loginInformation.setLogin(false);
+        return CommonResult.fail(loginInformation);
     }
 }

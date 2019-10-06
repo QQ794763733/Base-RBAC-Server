@@ -7,16 +7,18 @@
 1. **Springboot**
 2. **Springboot-Web**
 3. **Springboot-Test**
-4. **Springboot-DevTools**
-5. **MySQL-Connector-Java**
-6. **Mybatis**
-7. **MybatisGenerator**
-8. **HikariCP**
-9. **Apache-Shiro**
-10. **Jbcrypt**
-11. **Swagger2**
-12. **Swagger2-UI**
-13. **Log4J2**
+4. **Springboot-Validation**
+5. **Springboot-DevTools**
+6. **MySQL-Connector-Java**
+7. **Mybatis**
+8. **MybatisGenerator**
+9. **HikariCP**
+10. **Apache-Shiro**
+11. **Jbcrypt**
+12. **Swagger2**
+13. **Swagger2-UI**
+14. **Log4J2**
+15. **Jackson**
 
 ## 前端界面预览
 
@@ -41,6 +43,8 @@ git clone https://github.com/QQ794763733/Base-RBAC-Server.git
 >**这个项目还在开发中，作者平时需要上课，偶尔闲暇时间才有机会继续写。**
 
 ## 数据库表结构
+
+数据库采用的是MySQL
 
 在项目`/src/main/resources/init.sql`文件下有详细的表结构文件。
 

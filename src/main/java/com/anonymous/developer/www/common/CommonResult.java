@@ -72,6 +72,7 @@ public class CommonResult {
     public static CommonResult createCommonResult(Object data){
         return createCommonResult(200,"请求成功",data);
     }
+
     /**
      * 错误构造方法
      * @param data
@@ -80,13 +81,14 @@ public class CommonResult {
     public static CommonResult error(Object data){
         return createCommonResult(200,"发生错误",data);
     }
+
     /**
      * 成功构造方法
      * @param data Json信息
      * @return Json数据
      */
     public static CommonResult success(Object data){
-        return createCommonResult(200,"请求成功",data);
+        return createCommonResult(200,"操作成功",data);
     }
 
     /**
@@ -95,6 +97,6 @@ public class CommonResult {
      * @return
      */
     public static CommonResult fail(Object data){
-        return createCommonResult(200,"请求失败",data);
+        return createCommonResult(200,"操作失败",data);
     }
 }
