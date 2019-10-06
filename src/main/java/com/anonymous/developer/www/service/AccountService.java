@@ -26,4 +26,11 @@ public interface AccountService {
      * @return
      */
     PageData getCurrentPageData(String keyWord, int currentPage, int pageSize);
+
+    /**
+     * 根据账户名称修改登录时间
+     * @param accountName
+     * @return
+     */
+    int updateLoginDatetimeByAccountName(String accountName);
 }

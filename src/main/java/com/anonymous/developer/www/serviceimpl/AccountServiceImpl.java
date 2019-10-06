@@ -35,4 +35,9 @@ public class AccountServiceImpl implements AccountService {
         pageData.setData(accountMapper.selectLimit(keyWord,startRow,endRow));
         return pageData;
     }
+
+    @Override
+    public int updateLoginDatetimeByAccountName(String accountName) {
+        return accountMapper.updateLoginDatetimeByAccountName(accountName);
+    }
 }

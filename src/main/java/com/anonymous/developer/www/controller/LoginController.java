@@ -2,6 +2,7 @@ package com.anonymous.developer.www.controller;
 
 import com.anonymous.developer.www.common.CommonResult;
 import com.anonymous.developer.www.parameter.LoginRequestParam;
+import com.anonymous.developer.www.service.AccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -10,6 +11,7 @@ import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +29,8 @@ import javax.validation.Valid;
 @Api(tags = "登录接口")
 @RestController
 public class LoginController extends BaseController{
+    @Autowired
+    private AccountService accountService;
     @RequiresGuest
     @ApiOperation(value = "登录账户")
     @PostMapping(value = "/login")
@@ -40,9 +44,13 @@ public class LoginController extends BaseController{
         }catch (Exception exception){
             return CommonResult.createCommonResult("账户名或密码无效",false);
         }
+        //如果登录验证成功
         if(subject.isAuthenticated()) {
             Session session = subject.getSession();
+            //将用户名存入Session
             session.setAttribute("AccountName", loginRequestParam.getAccountName());
+            //更新登录时间
+            accountService.updateLoginDatetimeByAccountName(loginRequestParam.getAccountName());
             return CommonResult.success(true);
         }
         return CommonResult.fail(false);

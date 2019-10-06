@@ -11,8 +11,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
@@ -24,7 +22,6 @@ import java.util.Set;
 * @Description: 自定义ShiroRealm
 */
 public class CustomRealm extends AuthorizingRealm {
-    private final Logger logger = LoggerFactory.getLogger(CustomRealm.class);
     //账户服务
     @Autowired
     private AccountService accountService;
@@ -72,7 +69,6 @@ public class CustomRealm extends AuthorizingRealm {
         Account account = accountService.findByAccountName(username);
         if(account==null) throw new AccountException("The account for "+username+" was not found");
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(account,account.getAccountPassword(),getName());
-        logger.debug("当前用户"+username+"认证成功！");
         return authenticationInfo;
     }
 }

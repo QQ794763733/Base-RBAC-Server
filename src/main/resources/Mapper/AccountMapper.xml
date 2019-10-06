@@ -40,6 +40,11 @@
       last_login_datetime = #{lastLoginDatetime,jdbcType=TIMESTAMP}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
+  <update id="updateLoginDatetimeByAccountName" parameterType="java.lang.String">
+    update account
+    set last_login_datetime = Now()
+    where account_name = #{accountName,jdbcType=VARCHAR}
+  </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select account_id, account_name, account_password, account_description, account_sex, 
     create_datetime, operator, operator_ip, operate_datetime, last_login_datetime
