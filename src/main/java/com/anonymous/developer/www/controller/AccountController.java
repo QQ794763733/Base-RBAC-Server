@@ -40,4 +40,14 @@ public class AccountController extends BaseController{
     public CommonResult getCurrentPageData(@RequestBody @Valid PageRequestParam pageRequestParam){
         return CommonResult.success(accountService.getCurrentPageData(pageRequestParam.getKeyWord(),pageRequestParam.getCurrentPage(),pageRequestParam.getPageSize()));
     }
+
+    @ApiOperation(value = "通过账户ID删除账户")
+    @ApiParam(name = "accountId",value = "账户ID",defaultValue = "1",required = true)
+    @DeleteMapping("/deleteByAccountId")
+    public CommonResult deleteByAccountId(@RequestParam(value = "accountId") Integer accountId){
+        if(accountService.deleteByAccountId(accountId)){
+            return CommonResult.success(true);
+        }
+        return CommonResult.fail(false);
+    }
 }

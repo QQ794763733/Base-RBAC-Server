@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
     //文档标题
     private final String DOCUMENTATION_TITLE = "权限管理系统接口文档";
     //文档描述
-    private final String DOCUMENTATION_DESCRIPTION = "QQ:794763733\nWeChat:Anonymous-Developer";
+    private final String DOCUMENTATION_DESCRIPTION = "QQ: 794763733\nWeChat: Anonymous-Developer";
     //文档URL地址
     private final String DOCUMENTATION_URL = "https://blog.anonymous-developer.cn";
     //文档版本

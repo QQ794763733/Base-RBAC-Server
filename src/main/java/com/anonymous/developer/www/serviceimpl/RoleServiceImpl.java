@@ -1,6 +1,9 @@
 package com.anonymous.developer.www.serviceimpl;
 
+import com.anonymous.developer.www.dto.PageData;
+import com.anonymous.developer.www.mapper.RoleMapper;
 import com.anonymous.developer.www.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -14,8 +17,27 @@ import java.util.Set;
  */
 @Service
 public class RoleServiceImpl implements RoleService {
+    @Autowired
+    private RoleMapper roleMapper;
+
     @Override
-    public Set<String> getRoleByAccountId(Integer accountId) {
-        return null;
+    public Set<String> getRoleNameByAccountId(Integer accountId) {
+        return roleMapper.selectRoleNameByAccountPrimaryKey(accountId);
+    }
+
+    @Override
+    public PageData getCurrentPageData(String keyWord, int currentPage, int pageSize) {
+        int startRow = (currentPage-1)*pageSize;
+        int endRow = startRow + pageSize;
+        PageData pageData = new PageData();
+        pageData.setTotal(roleMapper.selectCountAll());
+        pageData.setPageSize(pageSize);
+        pageData.setData(roleMapper.selectLimit(keyWord,startRow,endRow));
+        return pageData;
+    }
+
+    @Override
+    public boolean deleteByRoleId(Integer roleId) {
+        return roleMapper.deleteByPrimaryKey(roleId)>0;
     }
 }

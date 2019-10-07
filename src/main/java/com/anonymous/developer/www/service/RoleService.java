@@ -1,5 +1,7 @@
 package com.anonymous.developer.www.service;
 
+import com.anonymous.developer.www.dto.PageData;
+
 import java.util.Set;
 
 /**
@@ -10,5 +12,26 @@ import java.util.Set;
  * @Datetime: 2019/9/15 8:26 下午
  */
 public interface RoleService {
-    Set<String> getRoleByAccountId(Integer accountId);
+    /**
+     * 通过账户ID查找角色名称
+     * @param accountId
+     * @return
+     */
+    Set<String> getRoleNameByAccountId(Integer accountId);
+
+    /**
+     * 通过关键字、当前页、页尺寸、查找角色
+     * @param keyWord
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    PageData getCurrentPageData(String keyWord, int currentPage, int pageSize);
+
+    /**
+     * 通过角色ID删除角色
+     * @param roleId
+     * @return
+     */
+    boolean deleteByRoleId(Integer roleId);
 }

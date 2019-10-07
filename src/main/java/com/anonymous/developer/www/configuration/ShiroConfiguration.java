@@ -34,14 +34,6 @@ public class ShiroConfiguration {
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         chainDefinition.addPathDefinition("/**","anon");
-        /*chainDefinition.addPathDefinition("/login","anon");
-        chainDefinition.addPathDefinition("/logout","logout");
-        Map<String,String> filters = new HashMap<>();
-        filters.put("/Api/**","authc");
-        filters.put("/account/**","authc");
-        filters.put("/role/**","authc");
-        filters.put("permission/**","authc");
-        chainDefinition.addPathDefinitions(filters);*/
         return chainDefinition;
     }
 

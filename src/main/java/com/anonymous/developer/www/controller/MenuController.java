@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 菜单控制器
  * @Datetime: 2019/9/24 5:07 下午
  */
-@Api(tags = "后台菜单接口")
+@Api(tags = "菜单接口")
 @RestController
 @RequestMapping(value = "/api/menu")
 public class MenuController extends BaseController{

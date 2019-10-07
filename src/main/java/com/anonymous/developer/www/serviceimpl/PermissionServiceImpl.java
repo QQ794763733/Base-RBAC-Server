@@ -1,6 +1,9 @@
 package com.anonymous.developer.www.serviceimpl;
 
+import com.anonymous.developer.www.dto.PageData;
+import com.anonymous.developer.www.mapper.PermissionMapper;
 import com.anonymous.developer.www.service.PermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -14,8 +17,27 @@ import java.util.Set;
  */
 @Service
 public class PermissionServiceImpl implements PermissionService {
+    @Autowired
+    private PermissionMapper permissionMapper;
+
     @Override
     public Set<String> getPermissionByAccountId(Integer accountId) {
         return null;
+    }
+
+    @Override
+    public PageData getCurrentPageData(String keyWord, int currentPage, int pageSize) {
+        int startRow = (currentPage-1)*pageSize;
+        int endRow = startRow + pageSize;
+        PageData pageData = new PageData();
+        pageData.setTotal(permissionMapper.selectCountAll());
+        pageData.setPageSize(pageSize);
+        pageData.setData(permissionMapper.selectLimit(keyWord,startRow,endRow));
+        return pageData;
+    }
+
+    @Override
+    public boolean deleteByPermissionId(Integer permissionId) {
+        return permissionMapper.deleteByPrimaryKey(permissionId)>0;
     }
 }

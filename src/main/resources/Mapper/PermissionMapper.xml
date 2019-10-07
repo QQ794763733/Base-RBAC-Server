@@ -47,6 +47,17 @@
     on role.role_id = relation_account_role.role_id
     where relation_account_role.account_id = #{accountId,jdbcType=INTEGER}
   </select>
+  <select id="selectLimit" resultMap="BaseResultMap">
+    select permission_id, permission_name, permission_description, permission_parent_id,
+    create_datetime, operator, operator_ip, operate_datetime
+    from permission
+    where permission_name like CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+    OR permission_description like CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
+    limit #{startRow,jdbcType=INTEGER},#{endRow,jdbcType=INTEGER}
+  </select>
+  <select id="selectCountAll" resultType="java.lang.Integer">
+    select count(*) from permission
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select permission_id, permission_name, permission_description, permission_parent_id, 
     create_datetime, operator, operator_ip, operate_datetime

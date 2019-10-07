@@ -28,9 +28,16 @@ public interface AccountService {
     PageData getCurrentPageData(String keyWord, int currentPage, int pageSize);
 
     /**
-     * 根据账户名称修改登录时间
+     * 通过账户名称修改登录时间
      * @param accountName
      * @return
      */
-    int updateLoginDatetimeByAccountName(String accountName);
+    boolean updateLoginDatetimeByAccountName(String accountName);
+
+    /**
+     * 通过账户ID删除账户
+     * @param accountId
+     * @return
+     */
+    boolean deleteByAccountId(Integer accountId);
 }

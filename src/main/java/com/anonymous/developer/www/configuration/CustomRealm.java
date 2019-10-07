@@ -49,7 +49,7 @@ public class CustomRealm extends AuthorizingRealm {
         if(principalCollection==null) throw new AuthorizationException("PrincipalCollection is null!");
         Account account = (Account) getAvailablePrincipal(principalCollection);
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roles = roleService.getRoleByAccountId(account.getAccountId());
+        Set<String> roles = roleService.getRoleNameByAccountId(account.getAccountId());
         Set<String> permissions = permissionService.getPermissionByAccountId(account.getAccountId());
         authorizationInfo.setRoles(roles);
         authorizationInfo.setStringPermissions(permissions);

@@ -24,6 +24,16 @@
 
 ![预览图](https://wx3.sinaimg.cn/large/0065B4vHgy1g7mu41vk27j31en0ri464.jpg)
 
+## 接口文档预览
+
+![Swagger文档](https://wx1.sinaimg.cn/large/0065B4vHly1g7q3lz7jk4j31en0ri79v.jpg)
+
+![Swagger文档预览](https://wx1.sinaimg.cn/large/0065B4vHly1g7q3lmb0tsj31en0riq8a.jpg)
+
+## 代码注释预览
+
+![认证代码](https://wx4.sinaimg.cn/large/0065B4vHly1g7q3wxgpdyj31gh0togyz.jpg)
+
 ## 使用方法
 
 > 提醒：确保已经安装Maven

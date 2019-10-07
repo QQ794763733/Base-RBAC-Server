@@ -37,7 +37,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public int updateLoginDatetimeByAccountName(String accountName) {
-        return accountMapper.updateLoginDatetimeByAccountName(accountName);
+    public boolean updateLoginDatetimeByAccountName(String accountName) {
+        return accountMapper.updateLoginDatetimeByAccountName(accountName)>0;
+    }
+
+    @Override
+    public boolean deleteByAccountId(Integer accountId) {
+        return accountMapper.deleteByPrimaryKey(accountId)>0;
     }
 }
