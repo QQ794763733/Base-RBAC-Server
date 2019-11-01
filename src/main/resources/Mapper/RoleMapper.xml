@@ -14,7 +14,7 @@
     delete from role
     where role_id = #{roleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.anonymous.developer.www.model.Role">
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Role" useGeneratedKeys="true">
     insert into role (role_id, role_name, role_description, 
       create_datetime, operator, operator_ip, 
       operate_datetime)

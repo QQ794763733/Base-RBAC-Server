@@ -2,6 +2,7 @@ package com.anonymous.developer.www.serviceimpl;
 
 import com.anonymous.developer.www.dto.PageData;
 import com.anonymous.developer.www.mapper.PermissionMapper;
+import com.anonymous.developer.www.model.Permission;
 import com.anonymous.developer.www.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,15 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public boolean deleteByPermissionId(Integer permissionId) {
         return permissionMapper.deleteByPrimaryKey(permissionId)>0;
+    }
+
+    @Override
+    public int addPermission(Permission permission) {
+        return permissionMapper.insert(permission);
+    }
+
+    @Override
+    public boolean updateByPermissionId(Permission permission) {
+        return permissionMapper.updateByPrimaryKey(permission)>0;
     }
 }

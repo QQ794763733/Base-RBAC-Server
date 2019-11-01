@@ -16,11 +16,11 @@ public class LoginInformation {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String accountName;
 
-    public boolean isLogin() {
+    public boolean getIsLogin() {
         return isLogin;
     }
 
-    public void setLogin(boolean login) {
+    public void setIsLogin(boolean login) {
         isLogin = login;
     }
 

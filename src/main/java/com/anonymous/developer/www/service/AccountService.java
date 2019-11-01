@@ -40,4 +40,17 @@ public interface AccountService {
      * @return
      */
     boolean deleteByAccountId(Integer accountId);
+
+    /**
+     * 增加账户并返回增加账户的ID
+     * @param account
+     * @return
+     */
+    int addAccount(Account account);
+
+    /**
+     * 通过账户ID更新账户
+     * @return
+     */
+    boolean updateByAccountId(Account account);
 }

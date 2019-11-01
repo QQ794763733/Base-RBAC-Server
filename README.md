@@ -26,7 +26,7 @@
 
 ## 接口文档预览
 
-![Swagger文档](https://wx1.sinaimg.cn/large/0065B4vHly1g7q3lz7jk4j31en0ri79v.jpg)
+![Swagger文档预览](https://wx1.sinaimg.cn/large/0065B4vHly1g7q3lz7jk4j31en0ri79v.jpg)
 
 ![Swagger文档预览](https://wx1.sinaimg.cn/large/0065B4vHly1g7q3lmb0tsj31en0riq8a.jpg)
 
@@ -50,7 +50,7 @@ git clone https://github.com/QQ794763733/Base-RBAC-Server.git
 /src/main/java/com/anonymous/developer/www/Application.java
 ```
 
->**这个项目还在开发中，作者平时需要上课，偶尔闲暇时间才有机会继续写。**
+> **这个项目还在开发中，作者平时需要上课，偶尔闲暇时间才有机会继续写。**
 
 ## 数据库表结构
 

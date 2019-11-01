@@ -1,6 +1,7 @@
 package com.anonymous.developer.www.controller;
 
 import com.anonymous.developer.www.common.CommonResult;
+import com.anonymous.developer.www.model.Account;
 import com.anonymous.developer.www.parameter.PageRequestParam;
 import com.anonymous.developer.www.service.AccountService;
 import io.swagger.annotations.Api;
@@ -36,8 +37,8 @@ public class AccountController extends BaseController{
     }
 
     @ApiOperation(value = "得到当前分页的账户数据")
-    @PostMapping("/getCurrentPageData")
-    public CommonResult getCurrentPageData(@RequestBody @Valid PageRequestParam pageRequestParam){
+    @GetMapping("/getCurrentPageData")
+    public CommonResult getCurrentPageData(@Valid PageRequestParam pageRequestParam){
         return CommonResult.success(accountService.getCurrentPageData(pageRequestParam.getKeyWord(),pageRequestParam.getCurrentPage(),pageRequestParam.getPageSize()));
     }
 
@@ -49,5 +50,17 @@ public class AccountController extends BaseController{
             return CommonResult.success(true);
         }
         return CommonResult.fail(false);
+    }
+
+    @ApiOperation(value = "增加账户")
+    @PostMapping("/addAccount")
+    public CommonResult addAccount(@RequestBody Account account){
+        return CommonResult.success(accountService.addAccount(account));
+    }
+
+    @ApiOperation(value = "通过账户ID更新账户")
+    @PutMapping("/updateByAccountId")
+    public CommonResult updateByAccountId(@RequestBody Account account){
+        return CommonResult.success(accountService.updateByAccountId(account));
     }
 }

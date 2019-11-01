@@ -1,6 +1,7 @@
 package com.anonymous.developer.www.service;
 
 import com.anonymous.developer.www.dto.PageData;
+import com.anonymous.developer.www.model.Role;
 
 import java.util.Set;
 
@@ -34,4 +35,17 @@ public interface RoleService {
      * @return
      */
     boolean deleteByRoleId(Integer roleId);
+
+    /**
+     * 增加角色并返回增加角色的ID
+     * @return
+     */
+    int addRole(Role role);
+
+    /**
+     * 通过角色ID更新角色
+     * @param role
+     * @return
+     */
+    boolean updateByRoleId(Role role);
 }

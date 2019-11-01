@@ -15,7 +15,7 @@ PRIMARY KEY(account_id)
 )ENGINE=INNODB DEFAULT CHARSET=UTF8 COMMENT '账户表';
 
 INSERT INTO account(account_name,account_password,account_description,account_sex,operator,operator_ip)
-VALUES('xiaoyu','$2a$10$kunyRzZrXo7w2jrWyJmsCuJN3L9P9eR2QDKS3LZkl097Q4.MoBb9q','系统账户',0,'system','127.0.0.1');
+VALUES('xiaoyu','$2a$10$0TPLAjzWNb0jVfANdW1iDOmKV25RJteO11Aua2imOON/6O.Z0p1Se','系统账户',0,'system','127.0.0.1');
 
 CREATE TABLE IF NOT EXISTS role(
 role_id INT AUTO_INCREMENT COMMENT '角色表主键',

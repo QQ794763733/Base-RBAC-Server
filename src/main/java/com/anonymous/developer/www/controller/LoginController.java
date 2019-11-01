@@ -50,7 +50,7 @@ public class LoginController extends BaseController{
             //再次取出Account
             Account account = accountService.findByAccountName(loginRequestParam.getAccountName());
             Session session = subject.getSession();
-            //将用户名存入Session
+            //将账户ID和账户名称存入Session
             session.setAttribute("AccountId",account.getAccountId());
             session.setAttribute("AccountName", account.getAccountName());
             //更新登录时间
@@ -98,12 +98,12 @@ public class LoginController extends BaseController{
         Session session = subject.getSession();
         LoginInformation loginInformation = new LoginInformation();
         if(subject.isAuthenticated() && session.getAttribute("AccountId")!=null && session.getAttribute("AccountName")!=null){
-            loginInformation.setLogin(true);
+            loginInformation.setIsLogin(true);
             loginInformation.setAccountId(Integer.parseInt(session.getAttribute("AccountId").toString()));
             loginInformation.setAccountName(session.getAttribute("AccountName").toString());
             return CommonResult.success(loginInformation);
         }
-        loginInformation.setLogin(false);
+        loginInformation.setIsLogin(false);
         return CommonResult.fail(loginInformation);
     }
 }

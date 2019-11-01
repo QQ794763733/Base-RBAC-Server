@@ -1,6 +1,7 @@
 package com.anonymous.developer.www.service;
 
 import com.anonymous.developer.www.dto.PageData;
+import com.anonymous.developer.www.model.Permission;
 
 import java.util.Set;
 
@@ -34,4 +35,16 @@ public interface PermissionService {
      * @return
      */
     boolean deleteByPermissionId(Integer permissionId);
+
+    /**
+     * 增加权限并返回增加权限的ID
+     * @return
+     */
+    int addPermission(Permission permission);
+
+    /**
+     * 通过权限ID更新权限
+     * @return
+     */
+    boolean updateByPermissionId(Permission permission);
 }

@@ -45,4 +45,14 @@ public class AccountServiceImpl implements AccountService {
     public boolean deleteByAccountId(Integer accountId) {
         return accountMapper.deleteByPrimaryKey(accountId)>0;
     }
+
+    @Override
+    public int addAccount(Account account) {
+        return accountMapper.insert(account);
+    }
+
+    @Override
+    public boolean updateByAccountId(Account account) {
+        return accountMapper.updateByPrimaryKey(account)>0;
+    }
 }

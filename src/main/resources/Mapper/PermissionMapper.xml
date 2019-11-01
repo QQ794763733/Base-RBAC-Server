@@ -15,7 +15,7 @@
     delete from permission
     where permission_id = #{permissionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.anonymous.developer.www.model.Permission">
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Permission" useGeneratedKeys="true">
     insert into permission (permission_id, permission_name, permission_description, 
       permission_parent_id, create_datetime, operator, 
       operator_ip, operate_datetime)

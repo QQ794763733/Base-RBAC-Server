@@ -17,7 +17,7 @@
     delete from account
     where account_id = #{accountId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.anonymous.developer.www.model.Account">
+  <insert id="insert" parameterType="com.anonymous.developer.www.model.Account" useGeneratedKeys="true">
     insert into account (account_id, account_name, account_password, 
       account_description, account_sex, create_datetime, 
       operator, operator_ip, operate_datetime, 

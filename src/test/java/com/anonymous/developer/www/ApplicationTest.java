@@ -13,9 +13,7 @@ import java.net.UnknownHostException;
  */
 public class ApplicationTest {
     public static void main(String args[]) throws UnknownHostException {
-        String password = "xy942698.";
-        if(BCrypt.checkpw(password,"$2a$10$kunyRzZrXo7w2jrWyJmsCuJN3L9P9eR2QDKS3LZkl097Q4.MoBb9q")){
-            System.out.println("111");
-        }
+        String password = "50b437a4c53f92ff9b3f95fb6d164e96";
+        System.out.println(BCrypt.hashpw(password,BCrypt.gensalt()));
     }
 }

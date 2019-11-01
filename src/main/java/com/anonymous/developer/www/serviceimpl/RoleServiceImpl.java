@@ -2,6 +2,7 @@ package com.anonymous.developer.www.serviceimpl;
 
 import com.anonymous.developer.www.dto.PageData;
 import com.anonymous.developer.www.mapper.RoleMapper;
+import com.anonymous.developer.www.model.Role;
 import com.anonymous.developer.www.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,15 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public boolean deleteByRoleId(Integer roleId) {
         return roleMapper.deleteByPrimaryKey(roleId)>0;
+    }
+
+    @Override
+    public int addRole(Role role) {
+        return roleMapper.insert(role);
+    }
+
+    @Override
+    public boolean updateByRoleId(Role role) {
+        return roleMapper.updateByPrimaryKey(role)>0;
     }
 }
